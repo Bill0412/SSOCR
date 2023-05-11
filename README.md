@@ -47,7 +47,7 @@ python ssocr.py images/test1.bmp -s
 ![test4.bmp](images/test4.bmp)
 ![res4.bmp](images/res4.bmp)
 
-```
+```shell
 $ python ssocr.py images\test1.BMP
 ['-', 3, 0, '.', 3, 7]
 $ python ssocr.py images\test2.BMP -s
@@ -56,6 +56,8 @@ $ python ssocr.py images\test3.BMP -s
 [0, 7, 8, '.', 3]
 $ python ssocr.py images\test4.BMP -s
 [0, 7, 2, '.', 6]
+$ python ssocr.py images/test4.png -r # for images with reverted black and white
+[1, '.', 9, 9]
 ```
 
 ## Acknowledge
