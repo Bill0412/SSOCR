@@ -34,7 +34,7 @@ Detect the existence of the corresponding bit, then encode the image, you can ac
 ```
 git clone https://github.com/bill0412/SSOCR.git
 pip install -r requirements.txt
-python ssocr.py images/test1.bmp -s
+python ssocr.py images/test1.png -s -r
 ```
 
 ## Results
