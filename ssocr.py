@@ -13,13 +13,13 @@ DIGITS_LOOKUP = {
     (1, 1, 0, 0, 1, 0, 1): 4,
     (0, 1, 1, 0, 1, 1, 1): 5,
     (0, 1, 1, 1, 1, 1, 1): 6,
-    (1, 1, 0, 0, 0, 1, 0): 7,
+    (1, 1, 0, 0, 1, 1, 0): 7,
     (1, 1, 1, 1, 1, 1, 1): 8,
     (1, 1, 1, 0, 1, 1, 1): 9,
     (0, 0, 0, 0, 0, 1, 1): '-'
 }
 H_W_Ratio = 1.9
-THRESHOLD = 35
+THRESHOLD = -30
 arc_tan_theta = 6.0  # 数码管倾斜角度
 crop_y0 = 215
 crop_y1 = 470
@@ -30,6 +30,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('image_path', help='path to image')
 parser.add_argument('-s', '--show_image', action='store_const', const=True, help='whether to show image')
 parser.add_argument('-d', '--is_debug', action='store_const', const=True, help='True or False')
+parser.add_argument('-r', '--revert', action='store_const', const=True, help='whether or not to revert black and white')
 
 
 def load_image(path, show=False):
@@ -269,6 +270,8 @@ def main():
     blurred, gray_img = load_image(args.image_path, show=args.show_image)
     output = blurred
     dst = preprocess(blurred, THRESHOLD, show=args.show_image)
+    if args.revert:
+        dst = 255 - dst
     digits_positions = find_digits_positions(dst)
     digits = recognize_digits_line_method(digits_positions, output, dst)
     if args.show_image:
